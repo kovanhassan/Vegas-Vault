@@ -13,6 +13,7 @@ int betAmount = 10;
 
 
 void setup(){
+  
   size(1100,800);
   
   logo = loadImage("Images/Vegas_Vault_Logo.png");
