@@ -15,6 +15,12 @@ void displayScreen() {
     spinButton.setVisible(false);
     increaseBet.setVisible(false);
     decreaseBet.setVisible(false);
+    
+    String[] preload = loadStrings("SavedData.txt");
+    String logininfo = preload[preload.length - 1];
+    String[] datasplit = logininfo.split(" ");
+    String loginInputted = datasplit[3];
+    String passwordInputted = datasplit[4];
 
     if (loginInputted.equals("True") && passwordInputted.equals("True")) {
       start.setVisible(true);
