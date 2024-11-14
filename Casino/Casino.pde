@@ -8,12 +8,14 @@ String passwordInputted = "False";
 Slots slotMachine;
 User slotUser;
 int numRows = 2;
-int userBalance = 50;
+int userBalance = 100;
 int betAmount = 10;
+boolean insufficientFunds;
+boolean min_betWarning;
+
 
 
 void setup(){
-  
   size(1100,800);
   
   logo = loadImage("Images/Vegas_Vault_Logo.png");
@@ -22,12 +24,12 @@ void setup(){
   loginBackground = loadImage("Images/mainBackground.jpg");
   loginBackground.resize(width, height);
   
-  PImage[] symbols = new PImage[2];
+  PImage[] symbols = new PImage[5];
   symbols[0] = loadImage("Images/cherry.png");
   symbols[1] = loadImage("Images/seven.png");
-  //symbols[2] = loadImage("Images/watermelon.png");
-  //symbols[3] = loadImage("Images/lemon.png");
-  //symbols[4] = loadImage("Images/crystal.png");
+  symbols[2] = loadImage("Images/watermelon.png");
+  symbols[3] = loadImage("Images/lemon.png");
+  symbols[4] = loadImage("Images/crystal.png");
   //symbols[5] = loadImage("Images/orange.png");
   //symbols[6] = loadImage("Images/777.png");
   //symbols[7] = loadImage("Images/emerald.png");
