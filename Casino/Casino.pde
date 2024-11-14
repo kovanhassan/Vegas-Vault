@@ -12,8 +12,7 @@ int userBalance = 100;
 int betAmount = 10;
 boolean insufficientFunds;
 boolean min_betWarning;
-
-
+int loggedUser = 0;
 
 void setup(){
   size(1100,800);
