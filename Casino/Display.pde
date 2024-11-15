@@ -63,6 +63,7 @@ void displayScreen() {
     increaseBet.setVisible(true);
     decreaseBet.setVisible(true);
     numSymbols.setVisible(true);
+    warningBox.setVisible(false);
 
     // Display slot machine stats and reels
     slotUser.displayStats();

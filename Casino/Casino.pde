@@ -46,6 +46,7 @@ void setup(){
   slotsBackground.resize(width, height);
   
   createGUI();
+  username.setText("Kovan");
   
 }
 
