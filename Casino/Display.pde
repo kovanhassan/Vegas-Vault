@@ -37,13 +37,8 @@ void displayScreen() {
     numSymbols.setVisible(false);
 
     // Load login information from file and check credentials
-    String[] preload = loadStrings("SavedData.txt");
-    String logininfo = preload[preload.length - 1];
-    String[] datasplit = logininfo.split(" ");
-    String loginInputted = datasplit[3];
-    String passwordInputted = datasplit[4];
-
-    if (loginInputted.equals("True") && passwordInputted.equals("True") && warningChecked) {
+    
+    if (loginInputted = true && passwordInputted && warningChecked) {
       start.setVisible(true);
     } else {
       start.setVisible(false);

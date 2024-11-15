@@ -30,15 +30,11 @@ public void usernameLogin(GTextField source, GEvent event) { //_CODE_:username:5
       String inputedUser = source.getText();
       
       if(userName.equals(inputedUser)){
-        loginInputted = "True";
+        loginInputted = true;
         loggedUser = i;
         break;
       }
     }
-  }
-  
-  else{
-    loginInputted = "False";
   }
 } //_CODE_:username:503263:
 
@@ -113,7 +109,7 @@ public void confirmSignUpEvent(GButton source, GEvent event) { //_CODE_:confirmS
 } //_CODE_:confirmSignUp:887050:
 
 public void password1_change1(GTextField source, GEvent event) { //_CODE_:password:446972:
-  if (source.getText().length() > 0 && loginInputted.equals("True")) {
+  if (source.getText().length() > 0 && loginInputted == true) {
       String[] savedData = loadStrings("SavedData.txt");
       String userInfo = savedData[loggedUser];
       String[] splitInfo = userInfo.split(" ");
@@ -121,13 +117,9 @@ public void password1_change1(GTextField source, GEvent event) { //_CODE_:passwo
       String inputedPass = source.getText();
       
       if(userPass.equals(inputedPass)){
-        passwordInputted = "True";
+        passwordInputted = true;
       }
   }
-  
-  else{
-    passwordInputted = "False";
-    }
 } //_CODE_:password:446972:
 
 

@@ -3,8 +3,8 @@ import g4p_controls.*;
 PImage loginBackground, slotsBackground,logo,jackpot;
 PImage cherry,seven,watermelon;
 String windowName = "login";
-String loginInputted = "False";
-String passwordInputted = "False";
+Boolean loginInputted = false;
+Boolean passwordInputted = false;
 boolean warningChecked = false;
 Slots slotMachine;
 User slotUser;
@@ -55,10 +55,14 @@ void setup(){
       String userPass = splitInfo[1];
       username.setText(userName);
       password.setText(userPass);
+      Boolean loginInputted = true;
+      Boolean passwordInputted = true;
   }
 }
 
 void draw(){
+  
+  println(loginInputted, passwordInputted);
 
   displayScreen();
   
