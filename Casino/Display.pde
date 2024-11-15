@@ -1,9 +1,12 @@
 void displayScreen() {
   if (windowName == "login") {
+    //int x = 0;
+    //tint(x);
     background(loginBackground);
     textAlign(CENTER);
     textSize(58);  // Large size for the header text (logo)
     image(logo, 400, 30);
+    
 
     textSize(30);  // Regular size for "Username" and "Password"
     text("Username:", width / 2 - 55, 360);

@@ -105,6 +105,16 @@ public void decreaseBetEvent(GButton source, GEvent event) { //_CODE_:decreaseBe
   }
 } //_CODE_:decreaseBet:851747:
 
+public void changeNumberOfSymbolsEvent(GSlider source, GEvent event) { //_CODE_:numSymbols:926544:
+  
+  numberOfSymbols = numSymbols.getValueI();
+  
+  
+  
+
+  
+} //_CODE_:numSymbols:926544:
+
 
 
 // Create all the GUI controls. 
@@ -141,6 +151,15 @@ public void createGUI(){
   decreaseBet.setText("Decrease Bet");
   decreaseBet.setLocalColorScheme(GCScheme.RED_SCHEME);
   decreaseBet.addEventHandler(this, "decreaseBetEvent");
+  numSymbols = new GSlider(this, 736, 433, 338, 170, 10.0);
+  numSymbols.setShowValue(true);
+  numSymbols.setLimits(5, 5, 9);
+  numSymbols.setNbrTicks(6);
+  numSymbols.setStickToTicks(true);
+  numSymbols.setNumberFormat(G4P.INTEGER, 0);
+  numSymbols.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
+  numSymbols.setOpaque(false);
+  numSymbols.addEventHandler(this, "changeNumberOfSymbolsEvent");
 }
 
 // Variable declarations 
@@ -152,3 +171,4 @@ GButton backButton;
 GButton spinButton; 
 GButton increaseBet; 
 GButton decreaseBet; 
+GSlider numSymbols; 

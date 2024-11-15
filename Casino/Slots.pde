@@ -1,3 +1,4 @@
+
 class Slots {
   int y;
   int numRows;
@@ -32,6 +33,8 @@ class Slots {
     spinCounter = 0;
     winCount = 0;  // Reset win count each time the spin starts
     displayWinningLines = false;  // Reset winning lines display when spin starts
+    numSymbols.setEnabled(false);
+    
   }
 
   // Method to spin the slot machine
@@ -42,7 +45,9 @@ class Slots {
       for (int row = 0; row < numRows; row++) {
         for (int col = 0; col < numCols; col++) {
           if (spinCounter % int(random(5, 10)) == 0) {
-            currentSymbols[row][col] = int(random(symbols.length));
+            
+             currentSymbols[row][col] = int(random(numberOfSymbols));
+            
           }
         }
       }
@@ -51,6 +56,7 @@ class Slots {
         isSpinning = false;
         checkForWin();  
         calculateWinnings();  
+        numSymbols.setEnabled(true);
       }
     }
   }
@@ -72,7 +78,9 @@ class Slots {
     // If there is a win, showWinningLines will be called which will just display the WINNING LINE(S) after the SPIN TO see where the slot hit
     if (displayWinningLines) {
       showWinningLines();
+     
     }
+   
   }
 
   // Check for winning combinations
@@ -108,7 +116,7 @@ class Slots {
 
   // Method to calculate winnings based on winning lines
   void calculateWinnings() {
-    int winnings = winCount * 8 * slotUser.betAmount;
+    int winnings = winCount * numberOfSymbols *slotUser.betAmount;
     slotUser.balance += winnings;
     
   }
@@ -120,7 +128,7 @@ class Slots {
     int endX = (width - numCols * symbolSize) / 2 + col2 * symbolSize + symbolSize / 2;
     int endY = y + row2 * symbolSize + symbolSize / 2;
 
-    stroke(130, 0, 130);
+    stroke(255);
     strokeWeight(20);
     line(startX, startY, endX, endY);
   }
