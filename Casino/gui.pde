@@ -64,6 +64,7 @@ public void password1_change1(GPassword source, GEvent event) { //_CODE_:passwor
 
 public void backButtonEvent(GButton source, GEvent event) { //_CODE_:backButton:657815:
   windowName = "login";
+  
 } //_CODE_:backButton:657815:
 
 public void spinSlotEvent(GButton source, GEvent event) { //_CODE_:spinButton:399158:
@@ -83,12 +84,41 @@ public void spinSlotEvent(GButton source, GEvent event) { //_CODE_:spinButton:39
 } //} //_CODE_:spinButton:399158:
 
 public void increaseBetEvent(GButton source, GEvent event) { //_CODE_:increaseBet:800397:
-  println("increaseBet - GButton >> GEvent." + event + " @ " + millis());
+  slotUser.betAmount += 5;
+  
+  if (min_betWarning){
+    min_betWarning = false;
+  }
+  
 } //_CODE_:increaseBet:800397:
 
 public void decreaseBetEvent(GButton source, GEvent event) { //_CODE_:decreaseBet:851747:
-  println("decreaseBet - GButton >> GEvent." + event + " @ " + millis());
+  int difference = slotUser.betAmount - 5;
+  if(difference > 0){
+    min_betWarning = false;
+    slotUser.betAmount -=5;
+    
+    
+  }
+  
+  else{
+    min_betWarning = true;
+  }
 } //_CODE_:decreaseBet:851747:
+
+public void changeNumberOfSymbolsEvent(GSlider source, GEvent event) { //_CODE_:numSymbols:926544:
+  
+  numberOfSymbols = numSymbols.getValueI();
+  
+  
+  
+
+  
+} //_CODE_:numSymbols:926544:
+
+public void warnignBoxEvent(GCheckbox source, GEvent event) { //_CODE_:warningBox:883808:
+  warningChecked = true;
+} //_CODE_:warningBox:883808:
 
 
 
@@ -99,14 +129,14 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("Sketch Window");
-  start = new GButton(this, 465, 550, 100, 60);
+  start = new GButton(this, 799, 582, 100, 60);
   start.setText("Start!");
   start.setLocalColorScheme(GCScheme.GREEN_SCHEME);
   start.addEventHandler(this, "startButton");
-  username = new GTextField(this, 432, 373, 220, 30, G4P.SCROLLBARS_NONE);
+  username = new GTextField(this, 740, 373, 220, 30, G4P.SCROLLBARS_NONE);
   username.setOpaque(false);
   username.addEventHandler(this, "usernameLogin");
-  password = new GPassword(this, 432, 470, 220, 30);
+  password = new GPassword(this, 740, 470, 220, 30);
   password.setMaxWordLength(10);
   password.setOpaque(true);
   password.addEventHandler(this, "password1_change1");
@@ -118,14 +148,29 @@ public void createGUI(){
   spinButton.setText("Spin!");
   spinButton.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   spinButton.addEventHandler(this, "spinSlotEvent");
-  increaseBet = new GButton(this, 934, 275, 126, 49);
+  increaseBet = new GButton(this, 890, 275, 126, 49);
   increaseBet.setText("Increase Bet");
   increaseBet.setLocalColorScheme(GCScheme.GREEN_SCHEME);
   increaseBet.addEventHandler(this, "increaseBetEvent");
-  decreaseBet = new GButton(this, 934, 351, 126, 49);
+  decreaseBet = new GButton(this, 890, 351, 126, 49);
   decreaseBet.setText("Decrease Bet");
   decreaseBet.setLocalColorScheme(GCScheme.RED_SCHEME);
   decreaseBet.addEventHandler(this, "decreaseBetEvent");
+  numSymbols = new GSlider(this, 762, 449, 333, 169, 10.0);
+  numSymbols.setShowValue(true);
+  numSymbols.setLimits(5, 5, 9);
+  numSymbols.setNbrTicks(6);
+  numSymbols.setStickToTicks(true);
+  numSymbols.setNumberFormat(G4P.INTEGER, 0);
+  numSymbols.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
+  numSymbols.setOpaque(false);
+  numSymbols.addEventHandler(this, "changeNumberOfSymbolsEvent");
+  warningBox = new GCheckbox(this, 667, 513, 423, 56);
+  warningBox.setIconAlign(GAlign.LEFT, GAlign.MIDDLE);
+  warningBox.setText("By proceeding, you acknowledge that you are participating in a game of chance and agree to the terms and conditions associated with gambling.");
+  warningBox.setLocalColorScheme(GCScheme.YELLOW_SCHEME);
+  warningBox.setOpaque(false);
+  warningBox.addEventHandler(this, "warnignBoxEvent");
 }
 
 // Variable declarations 
@@ -137,3 +182,5 @@ GButton backButton;
 GButton spinButton; 
 GButton increaseBet; 
 GButton decreaseBet; 
+GSlider numSymbols; 
+GCheckbox warningBox; 
