@@ -82,9 +82,13 @@ public void spinSlotEvent(GButton source, GEvent event) { //_CODE_:spinButton:39
   }
 } //} //_CODE_:spinButton:399158:
 
-public void textfield1_change1(GTextField source, GEvent event) { //_CODE_:textfield1:409439:
-  println("textfield1 - GTextField >> GEvent." + event + " @ " + millis());
-} //_CODE_:textfield1:409439:
+public void increaseBetEvent(GButton source, GEvent event) { //_CODE_:increaseBet:800397:
+  println("increaseBet - GButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:increaseBet:800397:
+
+public void decreaseBetEvent(GButton source, GEvent event) { //_CODE_:decreaseBet:851747:
+  println("decreaseBet - GButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:decreaseBet:851747:
 
 
 
@@ -100,7 +104,6 @@ public void createGUI(){
   start.setLocalColorScheme(GCScheme.GREEN_SCHEME);
   start.addEventHandler(this, "startButton");
   username = new GTextField(this, 432, 373, 220, 30, G4P.SCROLLBARS_NONE);
-  username.setText("<LastUserName>");
   username.setOpaque(false);
   username.addEventHandler(this, "usernameLogin");
   password = new GPassword(this, 432, 470, 220, 30);
@@ -111,13 +114,18 @@ public void createGUI(){
   backButton.setText("Back");
   backButton.setLocalColorScheme(GCScheme.GREEN_SCHEME);
   backButton.addEventHandler(this, "backButtonEvent");
-  spinButton = new GButton(this, 900, 350, 112, 42);
+  spinButton = new GButton(this, 500, 600, 112, 42);
   spinButton.setText("Spin!");
   spinButton.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   spinButton.addEventHandler(this, "spinSlotEvent");
-  textfield1 = new GTextField(this, 820, 157, 120, 30, G4P.SCROLLBARS_NONE);
-  textfield1.setOpaque(true);
-  textfield1.addEventHandler(this, "textfield1_change1");
+  increaseBet = new GButton(this, 934, 275, 126, 49);
+  increaseBet.setText("Increase Bet");
+  increaseBet.setLocalColorScheme(GCScheme.GREEN_SCHEME);
+  increaseBet.addEventHandler(this, "increaseBetEvent");
+  decreaseBet = new GButton(this, 934, 351, 126, 49);
+  decreaseBet.setText("Decrease Bet");
+  decreaseBet.setLocalColorScheme(GCScheme.RED_SCHEME);
+  decreaseBet.addEventHandler(this, "decreaseBetEvent");
 }
 
 // Variable declarations 
@@ -127,4 +135,5 @@ GTextField username;
 GPassword password; 
 GButton backButton; 
 GButton spinButton; 
-GTextField textfield1; 
+GButton increaseBet; 
+GButton decreaseBet; 
