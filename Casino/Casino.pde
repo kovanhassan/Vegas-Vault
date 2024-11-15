@@ -46,8 +46,16 @@ void setup(){
   slotsBackground.resize(width, height);
   
   createGUI();
-  username.setText("Kovan");
   
+  String[] savedData = loadStrings("SavedData.txt");
+  if (savedData.length > 0) {
+      String userInfo = savedData[savedData.length - 1];
+      String[] splitInfo = userInfo.split(" ");
+      String userName = splitInfo[0];
+      String userPass = splitInfo[1];
+      username.setText(userName);
+      password.setText(userPass);
+  }
 }
 
 void draw(){
