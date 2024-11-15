@@ -55,10 +55,13 @@ void setup(){
       String userPass = splitInfo[1];
       username.setText(userName);
       password.setText(userPass);
-      Boolean loginInputted = true;
-      Boolean passwordInputted = true;
+      loginInputted = true;
+      passwordInputted = true;
+      println(loginInputted, passwordInputted);
   }
 }
+
+
 
 void draw(){
   
