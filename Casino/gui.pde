@@ -64,6 +64,7 @@ public void password1_change1(GPassword source, GEvent event) { //_CODE_:passwor
 
 public void backButtonEvent(GButton source, GEvent event) { //_CODE_:backButton:657815:
   windowName = "login";
+  
 } //_CODE_:backButton:657815:
 
 public void spinSlotEvent(GButton source, GEvent event) { //_CODE_:spinButton:399158:
@@ -115,6 +116,10 @@ public void changeNumberOfSymbolsEvent(GSlider source, GEvent event) { //_CODE_:
   
 } //_CODE_:numSymbols:926544:
 
+public void warnignBoxEvent(GCheckbox source, GEvent event) { //_CODE_:warningBox:883808:
+  warningChecked = true;
+} //_CODE_:warningBox:883808:
+
 
 
 // Create all the GUI controls. 
@@ -124,14 +129,14 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("Sketch Window");
-  start = new GButton(this, 465, 550, 100, 60);
+  start = new GButton(this, 799, 582, 100, 60);
   start.setText("Start!");
   start.setLocalColorScheme(GCScheme.GREEN_SCHEME);
   start.addEventHandler(this, "startButton");
-  username = new GTextField(this, 432, 373, 220, 30, G4P.SCROLLBARS_NONE);
+  username = new GTextField(this, 740, 373, 220, 30, G4P.SCROLLBARS_NONE);
   username.setOpaque(false);
   username.addEventHandler(this, "usernameLogin");
-  password = new GPassword(this, 432, 470, 220, 30);
+  password = new GPassword(this, 740, 470, 220, 30);
   password.setMaxWordLength(10);
   password.setOpaque(true);
   password.addEventHandler(this, "password1_change1");
@@ -151,7 +156,7 @@ public void createGUI(){
   decreaseBet.setText("Decrease Bet");
   decreaseBet.setLocalColorScheme(GCScheme.RED_SCHEME);
   decreaseBet.addEventHandler(this, "decreaseBetEvent");
-  numSymbols = new GSlider(this, 736, 433, 338, 170, 10.0);
+  numSymbols = new GSlider(this, 762, 449, 333, 169, 10.0);
   numSymbols.setShowValue(true);
   numSymbols.setLimits(5, 5, 9);
   numSymbols.setNbrTicks(6);
@@ -160,6 +165,12 @@ public void createGUI(){
   numSymbols.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
   numSymbols.setOpaque(false);
   numSymbols.addEventHandler(this, "changeNumberOfSymbolsEvent");
+  warningBox = new GCheckbox(this, 667, 513, 423, 56);
+  warningBox.setIconAlign(GAlign.LEFT, GAlign.MIDDLE);
+  warningBox.setText("By proceeding, you acknowledge that you are participating in a game of chance and agree to the terms and conditions associated with gambling.");
+  warningBox.setLocalColorScheme(GCScheme.YELLOW_SCHEME);
+  warningBox.setOpaque(false);
+  warningBox.addEventHandler(this, "warnignBoxEvent");
 }
 
 // Variable declarations 
@@ -172,3 +183,4 @@ GButton spinButton;
 GButton increaseBet; 
 GButton decreaseBet; 
 GSlider numSymbols; 
+GCheckbox warningBox; 

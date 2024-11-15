@@ -77,6 +77,7 @@ class Slots {
 
     // If there is a win, showWinningLines will be called which will just display the WINNING LINE(S) after the SPIN TO see where the slot hit
     if (displayWinningLines) {
+      image(jackpot,400,80);
       showWinningLines();
      
     }
