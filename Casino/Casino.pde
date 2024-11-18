@@ -1,23 +1,56 @@
 import g4p_controls.*;
 
-PImage loginBackground, slotsBackground,logo,jackpot;
+PImage startBackground, start2Background, slotsBackground,logo,jackpot;
 PImage cherry,seven,watermelon;
-String windowName = "login";
-Boolean loginInputted = false;
-Boolean passwordInputted = false;
+String windowName = "start";
+String loginInputted = "False";
+String passwordInputted = "False";
 boolean warningChecked = false;
 Slots slotMachine;
 User slotUser;
 int numRows = 2;
-int userBalance = 100;
+int userBalance;
 int betAmount = 10;
 boolean insufficientFunds;
 boolean min_betWarning;
 int loggedUser = 0;
 int numberOfSymbols = 2;
+String introButtonVisible = "False";
+String userName;
+boolean showWelcomeStatement = false;
 
 void setup(){
   size(1100,800);
+  
+  
+  
+  String[] preload1 = loadStrings("SavedName.txt");
+  userName = preload1[0];
+  
+  if(userName.equals("noName")){
+    showWelcomeStatement = false;
+    
+   
+  }
+  
+  else{
+    showWelcomeStatement = true;
+    userName = preload1[0];
+    
+  }
+  
+
+  
+  
+  
+  
+  // Load login information from file and check credentials
+  String[] preload2 = loadStrings("SavedData.txt");
+  userBalance = int(preload2[0]);
+  
+  
+  startBackground = loadImage("Images/start1background.jpg");
+  startBackground.resize(width,height);
   
   logo = loadImage("Images/Vegas_Vault_Logo.png");
   logo.resize(320,320);
@@ -25,8 +58,8 @@ void setup(){
   jackpot = loadImage("Images/jackpot.png");
   jackpot.resize(300,100);
   
-  loginBackground = loadImage("Images/purplebackground.jpg");
-  loginBackground.resize(1100, 800);
+  start2Background = loadImage("Images/purplebackground.jpg");
+  start2Background.resize(1100, 800);
   
   PImage[] symbols = new PImage[9];
   symbols[0] = loadImage("Images/cherry.png");
@@ -47,27 +80,12 @@ void setup(){
   
   createGUI();
   
-  String[] savedData = loadStrings("SavedData.txt");
-  if (savedData.length > 0) {
-      String userInfo = savedData[savedData.length - 1];
-      String[] splitInfo = userInfo.split(" ");
-      String userName = splitInfo[0];
-      String userPass = splitInfo[1];
-      username.setText(userName);
-      password.setText(userPass);
-      loginInputted = true;
-      passwordInputted = true;
-      println(loginInputted, passwordInputted);
-  }
 }
 
-
-
 void draw(){
-  
-  println(loginInputted, passwordInputted);
 
   displayScreen();
+  text(userName,20,20);
   
   
   

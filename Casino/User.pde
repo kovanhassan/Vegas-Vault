@@ -25,7 +25,10 @@ void displayStats(){
 
 int deduct(){
   return this.balance = this.balance - this.betAmount; 
+
 }
+
+
 
 
   

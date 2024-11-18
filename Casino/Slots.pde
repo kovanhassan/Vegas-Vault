@@ -119,6 +119,8 @@ class Slots {
   void calculateWinnings() {
     int winnings = winCount * numberOfSymbols *slotUser.betAmount;
     slotUser.balance += winnings;
+    change(slotUser.balance);
+    
     
   }
 

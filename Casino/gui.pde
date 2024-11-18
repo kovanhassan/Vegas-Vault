@@ -19,27 +19,18 @@ public void startButton(GButton source, GEvent event) { //_CODE_:start:687561:
 } //_CODE_:start:687561:
 
 public void usernameLogin(GTextField source, GEvent event) { //_CODE_:username:503263:
-   if (source.getText().length() > 0) {
-    
-    String[] savedData = loadStrings("SavedData.txt");
-
-    for (int i = 0; i < savedData.length; i++) {
-      String userInfo = savedData[i];
-      String[] splitInfo = userInfo.split(" ");
-      String userName = splitInfo[0];
-      String inputedUser = source.getText();
-      
-      if(userName.equals(inputedUser)){
-        loginInputted = true;
-        loggedUser = i;
-        break;
-      }
-    }
-  }
+ if (source.getText().length() > 2) {
+   userName = source.getText();
+   introButtonVisible = "True";
+ }
+ 
+ else{
+   introButtonVisible = "False";
+ }
 } //_CODE_:username:503263:
 
 public void backButtonEvent(GButton source, GEvent event) { //_CODE_:backButton:657815:
-  windowName = "login";
+  windowName = "start2";
   
 } //_CODE_:backButton:657815:
 
@@ -53,6 +44,10 @@ public void spinSlotEvent(GButton source, GEvent event) { //_CODE_:spinButton:39
     } else {
         slotMachine.startSpin();
         slotUser.deduct();
+        
+       
+
+        
     }
   } else {
     insufficientFunds = true; // Set to true if funds are insufficient
@@ -82,45 +77,21 @@ public void decreaseBetEvent(GButton source, GEvent event) { //_CODE_:decreaseBe
   }
 } //_CODE_:decreaseBet:851747:
 
-public void changeNumberOfSymbolsEvent(GSlider source, GEvent event) { //_CODE_:numSymbols:926544:
-  
-  numberOfSymbols = numSymbols.getValueI();
-  
-  
-  
-
-  
-} //_CODE_:numSymbols:926544:
-
-public void warnignBoxEvent(GCheckbox source, GEvent event) { //_CODE_:warningBox:883808:
-  warningChecked = true;
+public void warningCheckedEvent(GCheckbox source, GEvent event) { //_CODE_:warningBox:883808:
+  warningChecked = !warningChecked;
 } //_CODE_:warningBox:883808:
 
-public void textfield1_change1(GTextField source, GEvent event) { //_CODE_:userSignUp:686135:
-  println("userSignUp - GTextField >> GEvent." + event + " @ " + millis());
-} //_CODE_:userSignUp:686135:
+public void changeNumberOfSymbolsEvent(GSlider source, GEvent event) { //_CODE_:numSymbols:284724:
+  numberOfSymbols = numSymbols.getValueI();
+  
+} //_CODE_:numSymbols:284724:
 
-public void passwordSignUpEvent(GTextField source, GEvent event) { //_CODE_:passwordSignUp:371538:
-  println("passwordSignUp - GTextField >> GEvent." + event + " @ " + millis());
-} //_CODE_:passwordSignUp:371538:
+public void introStartEvent(GButton source, GEvent event) { //_CODE_:introStart:457008:
+  windowName = "start2";
+  
+  changeName(userName);
 
-public void confirmSignUpEvent(GButton source, GEvent event) { //_CODE_:confirmSignUp:887050:
-  println("confirmSignUp - GButton >> GEvent." + event + " @ " + millis());
-} //_CODE_:confirmSignUp:887050:
-
-public void password1_change1(GTextField source, GEvent event) { //_CODE_:password:446972:
-  if (source.getText().length() > 0 && loginInputted == true) {
-      String[] savedData = loadStrings("SavedData.txt");
-      String userInfo = savedData[loggedUser];
-      String[] splitInfo = userInfo.split(" ");
-      String userPass = splitInfo[1];
-      String inputedPass = source.getText();
-      
-      if(userPass.equals(inputedPass)){
-        passwordInputted = true;
-      }
-  }
-} //_CODE_:password:446972:
+} //_CODE_:introStart:457008:
 
 
 
@@ -131,11 +102,11 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("Sketch Window");
-  start = new GButton(this, 799, 582, 100, 60);
+  start = new GButton(this, 758, 500, 100, 60);
   start.setText("Start!");
   start.setLocalColorScheme(GCScheme.GREEN_SCHEME);
   start.addEventHandler(this, "startButton");
-  username = new GTextField(this, 740, 373, 220, 30, G4P.SCROLLBARS_NONE);
+  username = new GTextField(this, 450, 373, 200, 30, G4P.SCROLLBARS_NONE);
   username.setOpaque(false);
   username.addEventHandler(this, "usernameLogin");
   backButton = new GButton(this, 0, 0, 80, 30);
@@ -154,33 +125,25 @@ public void createGUI(){
   decreaseBet.setText("Decrease Bet");
   decreaseBet.setLocalColorScheme(GCScheme.RED_SCHEME);
   decreaseBet.addEventHandler(this, "decreaseBetEvent");
-  numSymbols = new GSlider(this, 762, 449, 333, 169, 10.0);
-  numSymbols.setShowValue(true);
-  numSymbols.setLimits(5, 5, 9);
-  numSymbols.setNbrTicks(6);
-  numSymbols.setStickToTicks(true);
-  numSymbols.setNumberFormat(G4P.INTEGER, 0);
-  numSymbols.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
-  numSymbols.setOpaque(false);
-  numSymbols.addEventHandler(this, "changeNumberOfSymbolsEvent");
-  warningBox = new GCheckbox(this, 667, 513, 423, 56);
+  warningBox = new GCheckbox(this, 752, 600, 423, 56);
   warningBox.setIconAlign(GAlign.LEFT, GAlign.MIDDLE);
   warningBox.setText("By proceeding, you acknowledge that you are participating in a game of chance and agree to the terms and conditions associated with gambling.");
   warningBox.setLocalColorScheme(GCScheme.YELLOW_SCHEME);
   warningBox.setOpaque(false);
-  warningBox.addEventHandler(this, "warnignBoxEvent");
-  userSignUp = new GTextField(this, 159, 157, 120, 30, G4P.SCROLLBARS_NONE);
-  userSignUp.setOpaque(true);
-  userSignUp.addEventHandler(this, "textfield1_change1");
-  passwordSignUp = new GTextField(this, 158, 210, 120, 30, G4P.SCROLLBARS_NONE);
-  passwordSignUp.setOpaque(true);
-  passwordSignUp.addEventHandler(this, "passwordSignUpEvent");
-  confirmSignUp = new GButton(this, 176, 252, 80, 30);
-  confirmSignUp.setText("Confirm");
-  confirmSignUp.addEventHandler(this, "confirmSignUpEvent");
-  password = new GTextField(this, 759, 419, 120, 30, G4P.SCROLLBARS_NONE);
-  password.setOpaque(true);
-  password.addEventHandler(this, "password1_change1");
+  warningBox.addEventHandler(this, "warningCheckedEvent");
+  numSymbols = new GSlider(this, 673, 698, 337, 88, 10.0);
+  numSymbols.setShowValue(true);
+  numSymbols.setShowLimits(true);
+  numSymbols.setLimits(5, 5, 9);
+  numSymbols.setNbrTicks(5);
+  numSymbols.setStickToTicks(true);
+  numSymbols.setShowTicks(true);
+  numSymbols.setNumberFormat(G4P.INTEGER, 0);
+  numSymbols.setOpaque(false);
+  numSymbols.addEventHandler(this, "changeNumberOfSymbolsEvent");
+  introStart = new GButton(this, 518, 708, 80, 30);
+  introStart.setText("Face text");
+  introStart.addEventHandler(this, "introStartEvent");
 }
 
 // Variable declarations 
@@ -191,9 +154,6 @@ GButton backButton;
 GButton spinButton; 
 GButton increaseBet; 
 GButton decreaseBet; 
-GSlider numSymbols; 
 GCheckbox warningBox; 
-GTextField userSignUp; 
-GTextField passwordSignUp; 
-GButton confirmSignUp; 
-GTextField password; 
+GSlider numSymbols; 
+GButton introStart; 
