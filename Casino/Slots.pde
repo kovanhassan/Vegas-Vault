@@ -63,6 +63,7 @@ class Slots {
 
   // Method to display reels
   void displayReels() {
+    drawSlotBlack();
     int totalWidth = numCols * symbolSize;
     int startX = (width - totalWidth) / 2;
 
@@ -119,6 +120,7 @@ class Slots {
   void calculateWinnings() {
     int winnings = winCount * numberOfSymbols *slotUser.betAmount;
     slotUser.balance += winnings;
+    println(winnings);
     change(slotUser.balance);
     
     
@@ -130,8 +132,7 @@ class Slots {
     int startY = y + row1 * symbolSize + symbolSize / 2;
     int endX = (width - numCols * symbolSize) / 2 + col2 * symbolSize + symbolSize / 2;
     int endY = y + row2 * symbolSize + symbolSize / 2;
-
-    stroke(255);
+    stroke(0,155,0);
     strokeWeight(20);
     line(startX, startY, endX, endY);
   }
@@ -139,5 +140,14 @@ class Slots {
   // Method to show winning lines (called in displayReels when displayWinningLines is true)
   void showWinningLines() {
     checkForWin();  // Display winning lines for the current winning rows/columns
+  }
+  
+  
+  void drawSlotBlack(){
+    fill(0);
+    stroke(0);  // Set the outline color to white (or any other color you want)
+    strokeWeight(11);  // Set the outline thickness
+    rect((width - 370) / 2, (height - 410) / 2, 370, 370);
+
   }
 }
