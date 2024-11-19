@@ -52,6 +52,9 @@ void displayScreen() {
     increaseDepositAmount.setVisible(false);
     decreaseDeposit.setVisible(false);
     backtoSlotsButton.setVisible(false);
+    withdrawClick.setVisible(false);
+    decreaseWithdrawAmount.setVisible(false);
+    increaseWithdrawAmount.setVisible(false);
     
     
     
