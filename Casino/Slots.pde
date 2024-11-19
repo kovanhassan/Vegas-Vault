@@ -10,6 +10,7 @@ class Slots {
   int spinCounter;
   boolean isSpinning;
   boolean displayWinningLines;  // Variable to track if winning lines should be displayed
+  int winnings;
 
   int winCount = 0;  // Variable to count the number of winning lines
 
@@ -41,7 +42,11 @@ class Slots {
   void spin() {
     if (isSpinning) {
       spinCounter++;
-
+      spinButton.setEnabled(false);
+      increaseBet.setEnabled(false);
+      decreaseBet.setEnabled(false);
+      
+      
       for (int row = 0; row < numRows; row++) {
         for (int col = 0; col < numCols; col++) {
           if (spinCounter % int(random(5, 10)) == 0) {
@@ -54,6 +59,9 @@ class Slots {
 
       if (spinCounter > 100) {
         isSpinning = false;
+        spinButton.setEnabled(true);
+        increaseBet.setEnabled(true);
+        decreaseBet.setEnabled(true);
         checkForWin();  
         calculateWinnings();  
         numSymbols.setEnabled(true);
@@ -79,6 +87,8 @@ class Slots {
     // If there is a win, showWinningLines will be called which will just display the WINNING LINE(S) after the SPIN TO see where the slot hit
     if (displayWinningLines) {
       image(jackpot,400,80);
+      fill(0,180,0);
+      text("You Won: $"+winnings,550,50);
       showWinningLines();
      
     }
@@ -118,7 +128,7 @@ class Slots {
 
   // Method to calculate winnings based on winning lines
   void calculateWinnings() {
-    int winnings = winCount * numberOfSymbols *slotUser.betAmount;
+    winnings = winCount * numberOfSymbols *slotUser.betAmount;
     slotUser.balance += winnings;
     println(winnings);
     change(slotUser.balance);
