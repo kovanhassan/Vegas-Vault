@@ -1,4 +1,3 @@
-
 class Slots {
   int y;
   int numRows;
