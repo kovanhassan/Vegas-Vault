@@ -1,14 +1,4 @@
-float alpha = 0;  // Starting alpha for fading the logo
-boolean fadeIn2 = true;
-float alpha2 = 0;
-boolean fadeIn = true; // Flag for controlling fade direction (fade in / fade out
-
-
-boolean depositClicked = false;
-
-long lastDepositTime = 0;  // Last time the deposit was made
-boolean canDeposit = true;  // Flag to track if deposit is allowed
-
+//Display Function
 void displayScreen() {
   
     // Calculate the elapsed time since the last deposit
@@ -16,26 +6,30 @@ void displayScreen() {
   
 
   textAlign(CENTER);
+  
+  //If window name is start
   if( windowName == "start"){
 
-    // Fade in/out the logo with tint
     
+    //Inital Animation
+    
+    //If fadeIn:
     if (fadeIn) {
       alpha += 2;  // Increase alpha for fade-in
       if (alpha >= 255) {
        
-         fadeIn = false; // Start fading out after fade-in completes
+         fadeIn = false; // Start fading out after fade in completes
       }
     } 
     // Apply the tint with changing alpha
-    tint(255, alpha);  // Full white color, but varying transparency
+    tint(255, alpha);  
     
     
     
     
     
     
-    
+    // Showing the visible or not visible GUI 
     backButton.setVisible(false);
     spinButton.setVisible(false);
     increaseBet.setVisible(false);
@@ -58,38 +52,45 @@ void displayScreen() {
     
     
     
-    
+    //Assign startBackground to the display
     background(startBackground);
     textSize(30);
     
+    // If showWelcomeStatement is false, we print the text of "Set Username" and we show the username GUI box
     if(!showWelcomeStatement){
     text("Set Username:", 550, 360);
     image(logo, 400,0);
     username.setVisible(true);
 
-    if(introButtonVisible.equals("True") && !fadeIn){
+    // If introButtionVisible equals True and fadeIn is false, the intro start button becomes visible
+    // introButtionVisible becomes true when characters are typed into the username box
+      if(introButtonVisible.equals("True") && !fadeIn){
       introStart.setVisible(true);
       
-    }
+      }
     
-    else{
+    //Else, dont show the introStart Buttion
+      else{
       introStart.setVisible(false);
-    }
+      }
     
     
     }
     
+    //Else, show logo, welcome back statement, disable the username GUI
     else{
       image(logo, 400,0);
       text("Welcome Back:", 550, 360);
       username.setVisible(false);
       text(userName, 550, 400);
       
+      //If Not fading in anymore, the intro button will show
       if(!fadeIn){
       introStart.setVisible(true);
         
       }
       
+      //Else: the intro button will not show when the fade in animation is occuring
       else{
         introStart.setVisible(false);
       }
@@ -99,13 +100,12 @@ void displayScreen() {
 
   }
   
+  //If window name is "start2"
   if (windowName == "start2") {
      //Fade in/out the logo with tint
     
-    
-
-    
-    
+  
+    // If fadeIn2 is equal to true
     if (fadeIn2) {
       alpha2 += 2;  // Increase alpha for fade-in
       if (alpha2 >= 255) {
@@ -114,22 +114,22 @@ void displayScreen() {
       }
     } 
     // Apply the tint with changing alpha
-    tint(255, alpha2);  // Full white color, but varying transparency
+    tint(255, alpha2);  
 
-    // Background and UI elements for login
+    //Background for window
     background(start2Background);
+   
     textAlign(CENTER);
     
-    // Draw the logo with fading effect
+    // Draw the betting software's logo
     image(logo, 700, 10);
     
-    // Draw "Username" and "Password" labels
+   
     textSize(30);
     
 
     // Handle visibility of UI elements
     username.setVisible(false);
-    //password.setVisible(true);
     backButton.setVisible(false);
     spinButton.setVisible(false);
     increaseBet.setVisible(false);
@@ -144,31 +144,39 @@ void displayScreen() {
 
     
 
-  //loginInputted.equals("True") && passwordInputted.equals("True")
+    //If the warning has been clicked by the user, the start button will show and user can proceed to software
     if (warningChecked) {
       start.setVisible(true);
-    } else {
+    } 
+    
+    //Else, dont show the start button as the checkbox warning was NOT clicked
+    else {
       start.setVisible(false);
     }
   }
-  else if (windowName == "slots") {
-    // Background for the slots game
-    fill(255);
-    tint(255,255);
-     textSize(30);
+  
+  // If window name is slots
+  if (windowName == "slots") {
+    
+    
+    
+    textSize(30);
+    
+    //Background
     background(startBackground);
     
+    
+    //Turn Off All the warnings for Depositing and Withdrawing 
     minWithdrawWarning = false;
     maxWithdrawWarning = false;
-    
     minDepositWarning = false;
     maxDepositWarning = false;
 
-    // UI Elements visibility
+    // GUI visibility
     guide.setVisible(true);
     backButton.setVisible(true);
-    start.setVisible(false);  // Hide start button
-    username.setVisible(false);  // Hide username field
+    start.setVisible(false);  
+    username.setVisible(false);  
     spinButton.setVisible(true);
     increaseBet.setVisible(true);
     decreaseBet.setVisible(true);
@@ -185,13 +193,15 @@ void displayScreen() {
     decreaseWithdrawAmount.setVisible(false);
     increaseWithdrawAmount.setVisible(false);
 
-    // Display slot machine stats and reels
-    
+    // Display slot machine stats,display reels and have the maching 
+    // (although isSpinning is false preventing the machine from spinning at all times)
     slotUser.displayStats();
     slotMachine.displayReels();
     slotMachine.spin();
     
     fill(255);
+    
+    //Number Of Symbols Text Above Slider
     text("Number Of Symbols"+":",185,395);
     
 
@@ -205,25 +215,22 @@ void displayScreen() {
     
     // Display "Minimum Bet Reached" warning
     if (min_betWarning) {
-      insufficientFunds = false;  // Reset insufficient funds message
+      insufficientFunds = false;  // Reset insufficient funds message to prevent overlapping of texts
       textAlign(CENTER);
-      
       fill(255);
       text("Minimum Bet Reached!", width / 2, 170);
     }
   }
   
   
+  //if window name is rules
   if(windowName == "rules"){
     
-    
-    
 
-    
-    
+    // Use our green casino themed background
     background(slotsBackground);
     
-    
+    // Displayed/Not Displayed GUI
     deposit.setVisible(false);
     withdraw.setVisible(false);
     introStart.setVisible(false);
@@ -236,10 +243,13 @@ void displayScreen() {
     guide.setVisible(false);
 
     
+    // Display Set Of Rules
     image(rules,-150,-100);
 
   }
   
+  
+  // If Window Name Is Deposit
   if(windowName == "deposit"){
     background(dep_witBackground);
     
