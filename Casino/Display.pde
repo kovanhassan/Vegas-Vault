@@ -241,8 +241,7 @@ void displayScreen() {
   }
   
   if(windowName == "deposit"){
-    background(255);
-    
+    background(dep_witBackground);
     
     
     deposit.setVisible(false);
@@ -268,16 +267,16 @@ void displayScreen() {
     slotUser.displayDepositStats();
     
     if(minDepositWarning){
-       text("Minimum Deposit Reached!", width / 2, 470);
+       text("Minimum Deposit Reached!", width / 2, 480);
     }
     
     else if(maxDepositWarning){
-      text("Maximum Deposit Reached!", width / 2, 470);
+      text("Maximum Deposit Reached!", width / 2, 480);
       
     }
     
       if (elapsedTime <= 20000 && depositClicked ) {  // 120,000 ms = 2 minutes
-      text("Deposit is paused. Waiting for cooldown...",550,600);
+      text("Deposit is paused. Waiting for cooldown...",550,440);
       depositClick.setVisible(false);
     } else {
       // Otherwise, hide the deposit button
@@ -289,7 +288,7 @@ void displayScreen() {
   
   
   if(windowName == "withdraw"){
-    background(255);
+    background(dep_witBackground);
     
     deposit.setVisible(false);
     withdraw.setVisible(false);

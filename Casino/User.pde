@@ -38,7 +38,7 @@ void displayStats(){
 
 void displayDepositStats(){
   textAlign(CENTER);
-  fill(0);
+  fill(255);
    text(userName, 100,50);
    text("$"+this.balance,100,100);
    text("Deposit Amount:"+" $"+amountDeposit,width/2,height/2);
@@ -47,7 +47,7 @@ void displayDepositStats(){
 
 void displayWithdrawStats(){
    textAlign(CENTER);
-   fill(0);
+   fill(255);
    text(userName, 100,50);
    text("$"+this.balance,100,100);
    text("Withdraw Amount:"+" $"+amountWithdraw,width/2,height/2);

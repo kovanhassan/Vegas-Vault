@@ -1,6 +1,6 @@
 import g4p_controls.*;
 
-PImage startBackground, start2Background, slotsBackground,logo,jackpot,rules,paypalLogo;
+PImage startBackground, start2Background, slotsBackground,logo,jackpot,rules,paypalLogo,dep_witBackground;
 PImage cherry,seven,watermelon;
 String windowName = "start";
 boolean warningChecked = false;
@@ -60,6 +60,8 @@ void setup(){
   paypalLogo = loadImage("Images/paypal.png");
   paypalLogo.resize(300,300);
   
+  dep_witBackground = loadImage("Images/depbackground.jpg");
+  dep_witBackground.resize(width,height);
   
   rules = loadImage("Images/rules.png");
   rules.resize(1400,1000);
