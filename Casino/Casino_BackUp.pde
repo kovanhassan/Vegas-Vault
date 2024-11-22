@@ -1,7 +1,7 @@
 import g4p_controls.*;
 
 //Global Variables
-PImage startBackground, start2Background, slotsBackground,logo,jackpot,rules,paypalLogo;
+PImage startBackground, start2Background, slotsBackground,logo,jackpot,rules,paypalLogo,dep_witBackground;
 PImage cherry,seven,watermelon;
 String windowName = "start";
 boolean warningChecked = false;
@@ -53,6 +53,8 @@ void setup(){
   }
   
   
+  
+  
   // Loads the balance in $ from the SavedData text file and put that to the userBalance variable
   String[] preload2 = loadStrings("SavedData.txt");
   userBalance = int(preload2[0]);
@@ -64,6 +66,9 @@ void setup(){
   // Loading rules
   rules = loadImage("Images/rules.png");
   rules.resize(1400,1000);
+  
+  dep_witBackground = loadImage("Images/depbackground.jpg");
+  dep_witBackground.resize(width,height);
   
   //loading Start1Background
   startBackground = loadImage("Images/start1background.jpg");
