@@ -1,53 +1,36 @@
 import g4p_controls.*;
 
 //Global Variables
-
-//Images
-PImage startBackground, start2Background, slotsBackground,logo,jackpot,rules,paypalLogo,dep_witBackground; 
-
-//Inital Window
+PImage startBackground, start2Background, slotsBackground,logo,jackpot,rules,paypalLogo,dep_witBackground;
+PImage cherry,seven,watermelon;
 String windowName = "start";
-
-//Gambling Warning
-boolean warningChecked = false; 
-
+boolean warningChecked = false;
 Slots slotMachine;
 User slotUser;
-
 int numRows = 2;
-int userBalance; 
-int betAmount = 10; //Inital Bet Amount
-boolean insufficientFunds; // No Funds Warning
-
+int userBalance;
+int betAmount = 10;
+boolean insufficientFunds;
+boolean min_betWarning;
+int loggedUser = 0;
 int numberOfSymbols = 5;
 String introButtonVisible = "False";
 String userName;
 boolean showWelcomeStatement = false;
-
-//Initial Deposit and Withdraw Amounts
-int depositAmount = 100; 
+int depositAmount = 100;
 int withdrawAmount = 100; 
-
-//Deposit and Withdraw Warnings
 boolean minDepositWarning = false;
 boolean maxDepositWarning = false;
 boolean minWithdrawWarning = false;
 boolean maxWithdrawWarning = false;
-
-//Variables For Fade In Animation
-float alpha = 0;  
+float alpha = 0;  // Starting alpha for fading the logo
 boolean fadeIn2 = true;
 float alpha2 = 0;
-boolean fadeIn = true; 
-
-
+boolean fadeIn = true; // Flag for controlling fade direction (fade in / fade out
 boolean depositClicked = false;
 long lastDepositTime = 0;  // Last time the deposit was made
 boolean canDeposit = true;  // Flag to track if deposit is allowed
-boolean noBalanceToWithdrawWarning = false; // Limited Balance Warning
-boolean max_betWarning = false; // Max Bet Warning
-boolean min_betWarning; // Min Bet Warning
-int showreset = 0;
+
 
 //Setup 
 void setup(){
@@ -63,13 +46,10 @@ void setup(){
     showWelcomeStatement = false;
   }
   
-  
   // Else, show Welcome Statement as the user already has his account on the software
   else{
     showWelcomeStatement = true;
   }
-  
- 
   
   // Loads the balance in $ from the SavedData text file and put that to the userBalance variable
   String[] preload2 = loadStrings("SavedData.txt");
@@ -121,14 +101,12 @@ void setup(){
   //Creating new user
   slotUser = new User(userName,userBalance,0,betAmount,depositAmount,withdrawAmount);
   
-  
   //loading slot machine background
   slotsBackground = loadImage("Images/slotsBackground.jpg");
   slotsBackground.resize(width, height);
   
   //Creates GUI
-  createGUI();
-  
+  createGUI(); 
 }
 
 // Draw
