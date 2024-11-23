@@ -1,5 +1,3 @@
 # Vegas Vault
 
-TEST TEXT
-
-testing testing 123 
+Vegas Vault Online Casino Slot Machine
