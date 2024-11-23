@@ -71,6 +71,7 @@ class Slots {
         for (int col = 0; col < numCols; col++) {
           
           // Randomly update symbols based on spinCounter, ensuring they change unpredictably and at varying intervals
+          // This checks if spinCounter is divisible by a random number between 5 and 9
           if (spinCounter % int(random(5, 10)) == 0) {
             
              currentSymbols[row][col] = int(random(numberOfSymbols));  // Assign a random symbol
