@@ -3,46 +3,37 @@ void displayScreen() {
   
   // Calculate the elapsed time since the last deposit
   long elapsedTime = millis() - lastDepositTime;
-  
   textAlign(CENTER);
-
-  //If window name is start
+  
+  //"Start" window screen
   if( windowName == "start"){
 
     //Inital Animation
-    
     //If fadeIn:
     if (fadeIn) {
-      alpha += 2;  // Increase alpha for fade-in
+      
+      // Increase alpha for fade-in
+      alpha += 2;  
+      
       if (alpha >= 255) {
-       
-         fadeIn = false; // Start fading out after fade in completes
+        
+         // Switch fadeIn off
+         fadeIn = false;
       }
     } 
+    
     // Apply the tint with changing alpha
     tint(255, alpha);  
     
     // Showing the visible or not visible GUI 
-    backButton.setVisible(false);
-    spinButton.setVisible(false);
-    increaseBet.setVisible(false);
-    decreaseBet.setVisible(false);
-    numSymbols.setVisible(false);
-    warningBox.setVisible(false);
-    start.setVisible(false);
-    guide.setVisible(false);
-    backButton_guide.setVisible(false);
-    deposit.setVisible(false);
-    withdraw.setVisible(false);
-    depositClick.setVisible(false);
-    increaseDepositAmount.setVisible(false);
-    decreaseDeposit.setVisible(false);
-    backtoSlotsButton.setVisible(false);
-    withdrawClick.setVisible(false);
-    decreaseWithdrawAmount.setVisible(false);
-    increaseWithdrawAmount.setVisible(false);
-    reset.setVisible(false);
-    username.setVisible(true);
+    showGUI_start();
+    
+    //Make Sure That reset.setVisible is ONLY setVISIBLE to FALSE ONCE to avoid bugging
+    if(showreset == 0){
+      reset.setVisible(false);
+      showreset++;
+    }
+
     
     //Assign startBackground to the display
     background(startBackground);
@@ -51,19 +42,21 @@ void displayScreen() {
     // If showWelcomeStatement is false, we print the text of "Set Username" and we show the username GUI box
     if(!showWelcomeStatement){
     
-      text("Set Username:", 550, 360);
-      image(logo, 400,0);
-      username.setVisible(true);
+    // Reset Button will be hidden
+    reset.setVisible(false);
+    text("Set Username:", 550, 360);
+    image(logo, 400,0);
+    username.setVisible(true);
 
-    // If introButtionVisible equals True and fadeIn is false, the intro start button becomes visible
-    // introButtionVisible becomes true when characters are typed into the username box
+    // If introButtonVisible equals True and fadeIn is false, the intro start button becomes visible
+    // *Note*: introButtionVisible becomes true when characters are typed into the username box
       if(introButtonVisible.equals("True") && !fadeIn){
-        introStart.setVisible(true); 
+      introStart.setVisible(true);
       }
     
     //Else, dont show the introStart Buttion
       else{
-        introStart.setVisible(false);
+      introStart.setVisible(false);
       }
     }
     
@@ -74,69 +67,74 @@ void displayScreen() {
       username.setVisible(false);
       text(userName, 550, 400);
       
-      //If Not fading in anymore, the intro button will show
+      //If fading animation is finished, the intro and reset button will be visible
       if(!fadeIn){
-        introStart.setVisible(true);
-        reset.setVisible(true);   
+      introStart.setVisible(true);
+      reset.setVisible(true);
       }
       
-      //Else: the intro button will not show when the fade in animation is occuring
+      //If fading animation is still going on, the intro button will not show
       else{
         introStart.setVisible(false);
       }
+      
     }
   }
   
-  //If window name is "start2"
+  
+  
+  
+  //"START2" window screen
   if (windowName == "start2") {
-    //Fade in/out the logo with tint
-    
+  
     // If fadeIn2 is equal to true
     if (fadeIn2) {
-      alpha2 += 2;  // Increase alpha for fade-in
+      
+      // Increase alpha for fade-in
+      alpha2 += 2;  
+      
+      if (alpha2 >= 255) {
+       
+        // Switch fadeIn2 off
+        fadeIn2 = false;
+      }
     } 
     // Apply the tint with changing alpha
     tint(255, alpha2);  
 
     //Background for window
     background(start2Background);
-       
+   
+    textAlign(CENTER);
+    
     // Draw the betting software's logo
     image(logo, 700, 10);
-       
     textSize(30);
     
-    // Handle visibility of UI elements
-    username.setVisible(false);
-    backButton.setVisible(false);
-    spinButton.setVisible(false);
-    increaseBet.setVisible(false);
-    decreaseBet.setVisible(false);
-    numSymbols.setVisible(false);
-    warningBox.setVisible(true);
-    introStart.setVisible(false);
-    guide.setVisible(false);
-    deposit.setVisible(false);
-    withdraw.setVisible(false);
-    reset.setVisible(false);
 
-    //If the warning has been clicked by the user, the start button will show and user can proceed to software
-    if (warningChecked) {
+    // Handle visibility of GUI elements
+    showGUI_start2();
+
+
+    //If the warning has been clicked by the user and animation has finished, the start button will show and user can proceed to software
+    if (warningChecked && !fadeIn2) {
       start.setVisible(true);
     } 
     
-    //Else, dont show the start button as the checkbox warning was NOT clicked
+    //Else, dont show the start button as the checkbox warning was NOT clicked or animation will not completed
     else {
       start.setVisible(false);
     }
   }
   
-  // If window name is slots
+  // "Slots" window tab
   if (windowName == "slots") {
+    
     textSize(30);
     
     //Background
     background(startBackground);
+    
     
     //Turn Off All the warnings for Depositing and Withdrawing 
     minWithdrawWarning = false;
@@ -145,25 +143,7 @@ void displayScreen() {
     maxDepositWarning = false;
 
     // GUI visibility
-    guide.setVisible(true);
-    backButton.setVisible(true);
-    start.setVisible(false);  
-    username.setVisible(false);  
-    spinButton.setVisible(true);
-    increaseBet.setVisible(true);
-    decreaseBet.setVisible(true);
-    numSymbols.setVisible(true);
-    warningBox.setVisible(false);
-    backButton_guide.setVisible(false);
-    deposit.setVisible(true);
-    withdraw.setVisible(true);
-    depositClick.setVisible(false);
-    increaseDepositAmount.setVisible(false);
-    decreaseDeposit.setVisible(false);
-    backtoSlotsButton.setVisible(false);
-    withdrawClick.setVisible(false);
-    decreaseWithdrawAmount.setVisible(false);
-    increaseWithdrawAmount.setVisible(false);
+    showGUI_slots();
 
     // Display slot machine stats,display reels and have the maching 
     // (although isSpinning is false preventing the machine from spinning at all times)
@@ -185,8 +165,22 @@ void displayScreen() {
       text("Insufficient Funds", width / 2, 170);
     }
     
-    // Display "Minimum Bet Reached" warning
-    if (min_betWarning) {
+    // If Max Bet Warning
+    if(max_betWarning){
+      
+      // Reset insufficient funds message to prevent overlapping of texts
+      insufficientFunds = false;  
+      textAlign(CENTER);
+      fill(255);
+      
+      //Print Text to tell user max bet has been reached
+      text("Maximum Bet Reached!", width / 2, 170);
+      
+    }
+    
+    
+    // Display "Minimum Bet Reached" warning if its true
+    else if (min_betWarning) {
       insufficientFunds = false;  // Reset insufficient funds message to prevent overlapping of texts
       textAlign(CENTER);
       fill(255);
@@ -194,110 +188,96 @@ void displayScreen() {
     }
   }
   
-  //if window name is rules
+  
+  //Rules Window
   if(windowName == "rules"){
     
+
     // Use our green casino themed background
     background(slotsBackground);
     
     // Displayed/Not Displayed GUI
-    deposit.setVisible(false);
-    withdraw.setVisible(false);
-    introStart.setVisible(false);
-    numSymbols.setVisible(false);
-    increaseBet.setVisible(false);
-    decreaseBet.setVisible(false);
-    spinButton.setVisible(false);
-    backButton.setVisible(false);
-    backButton_guide.setVisible(true);
-    guide.setVisible(false);
+    showGUI_rules();
     
     // Display Set Of Rules
     image(rules,-150,-100);
+
   }
   
-  // If Window Name Is Deposit
+  
+  // Deposit Window
   if(windowName == "deposit"){
+    //Background
     background(dep_witBackground);
     
-    deposit.setVisible(false);
-    withdraw.setVisible(false);
-    introStart.setVisible(false);
-    numSymbols.setVisible(false);
-    increaseBet.setVisible(false);
-    decreaseBet.setVisible(false);
-    spinButton.setVisible(false);
-    backButton.setVisible(false);
-    guide.setVisible(false);
-    backButton_guide.setVisible(false);
-    username.setVisible(false);
-    warningBox.setVisible(false);
-    start.setVisible(false);
-    depositClick.setVisible(true);
-    increaseDepositAmount.setVisible(true);
-    decreaseDeposit.setVisible(true);
-    backtoSlotsButton.setVisible(true);
+    //Showing/Not Visible GUI
+    showGUI_deposit();
     
-    //Displaying the paypal image for the deposit screen
+    //Display PayPal Logo
     image(paypalLogo,400,0);
+    
+    // Showcase Deposit Stats
     slotUser.displayDepositStats();
     
-    //Showing the user when they have reached the minimum deposit amount
+    
+    // if Min Deposit Warning, warn the user
     if(minDepositWarning){
        text("Minimum Deposit Reached!", width / 2, 480);
     }
     
-    //Showing the user when they have reached the maximum deposit amount
+    // if Max Deposit Warning, warn the user
     else if(maxDepositWarning){
       text("Maximum Deposit Reached!", width / 2, 480);
+      
     }
     
-    //Prevents the user from rapidly increasing the amount in their account
-    if (elapsedTime <= 20000 && depositClicked ) {  // 120,000 ms = 2 minutes
+    
+      // Once user clicks deposit, there will be a cooldown
+      if (elapsedTime <= 40000 && depositClicked ) {  // 40,000 ms = 40 seconds
       text("Deposit is paused. Waiting for cooldown...",550,440);
       depositClick.setVisible(false);
-    } 
-    
-    //Otherwise, make the deposit button visible
-    else {      
+    } else {
+      // Otherwise, hide the deposit button
+      
       depositClick.setVisible(true);
     }
+
   }
   
-  //Setting up the withdraw page
+  //Withdraw Page
   if(windowName == "withdraw"){
+    
+    //Background
     background(dep_witBackground);
     
-    deposit.setVisible(false);
-    withdraw.setVisible(false);
-    introStart.setVisible(false);
-    numSymbols.setVisible(false);
-    increaseBet.setVisible(false);
-    decreaseBet.setVisible(false);
-    spinButton.setVisible(false);
-    backButton.setVisible(false);
-    guide.setVisible(false);
-    backButton_guide.setVisible(false);
-    username.setVisible(false);
-    warningBox.setVisible(false);
-    start.setVisible(false);
-    backtoSlotsButton.setVisible(true);
-    withdrawClick.setVisible(true);
-    decreaseWithdrawAmount.setVisible(true);
-    increaseWithdrawAmount.setVisible(true);
     
-    //Displaying the paypal logo
+    //Show/Not Show GUI
+    showGUI_withdraw();
+    
+    //Display PayPal logo
     image(paypalLogo,400,0);
+    
+    //Display User Withdraw Stats
     slotUser.displayWithdrawStats();
     
-    //Showing the user when they've reached the minimum withdraw amount
+    
+    //Warn user that they cannot withdraw
+    if(noBalanceToWithdrawWarning){
+      text("Limited Balance To Withdraw!", width / 2, 470);
+    }
+    
+    
+    // Warn user about min withdraw amount
     if(minWithdrawWarning){
        text("Minimum Withdraw Reached!", width / 2, 470);
     }
     
-    //Showing the user when they've reached the maximum withdraw amount
+    // Warn user about max withdraw amount
     else if(maxWithdrawWarning){
-      text("Maximum Withdraw Reached!", width / 2, 470);     
-    }   
-  }  
+      text("Maximum Withdraw Reached!", width / 2, 470);
+      
+    }
+    
+  }
+  
 }
