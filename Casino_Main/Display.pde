@@ -1,16 +1,14 @@
 //Display Function
 void displayScreen() {
   
-    // Calculate the elapsed time since the last deposit
+  // Calculate the elapsed time since the last deposit
   long elapsedTime = millis() - lastDepositTime;
   
-
   textAlign(CENTER);
-  reset.setVisible(false);
+
   //If window name is start
   if( windowName == "start"){
 
-    
     //Inital Animation
     
     //If fadeIn:
@@ -24,11 +22,6 @@ void displayScreen() {
     // Apply the tint with changing alpha
     tint(255, alpha);  
     
-    
-    
-    
-    
-    
     // Showing the visible or not visible GUI 
     backButton.setVisible(false);
     spinButton.setVisible(false);
@@ -37,7 +30,6 @@ void displayScreen() {
     numSymbols.setVisible(false);
     warningBox.setVisible(false);
     start.setVisible(false);
-    username.setVisible(true);
     guide.setVisible(false);
     backButton_guide.setVisible(false);
     deposit.setVisible(false);
@@ -49,10 +41,8 @@ void displayScreen() {
     withdrawClick.setVisible(false);
     decreaseWithdrawAmount.setVisible(false);
     increaseWithdrawAmount.setVisible(false);
-    
-    
-    
-    
+    reset.setVisible(false);
+    username.setVisible(true);
     
     //Assign startBackground to the display
     background(startBackground);
@@ -61,23 +51,20 @@ void displayScreen() {
     // If showWelcomeStatement is false, we print the text of "Set Username" and we show the username GUI box
     if(!showWelcomeStatement){
     
-    text("Set Username:", 550, 360);
-    image(logo, 400,0);
-    username.setVisible(true);
+      text("Set Username:", 550, 360);
+      image(logo, 400,0);
+      username.setVisible(true);
 
     // If introButtionVisible equals True and fadeIn is false, the intro start button becomes visible
     // introButtionVisible becomes true when characters are typed into the username box
       if(introButtonVisible.equals("True") && !fadeIn){
-      introStart.setVisible(true);
-      
+        introStart.setVisible(true); 
       }
     
     //Else, dont show the introStart Buttion
       else{
-      introStart.setVisible(false);
+        introStart.setVisible(false);
       }
-    
-    
     }
     
     //Else, show logo, welcome back statement, disable the username GUI
@@ -89,49 +76,36 @@ void displayScreen() {
       
       //If Not fading in anymore, the intro button will show
       if(!fadeIn){
-      introStart.setVisible(true);
-      reset.setVisible(true);
-        
+        introStart.setVisible(true);
+        reset.setVisible(true);   
       }
       
       //Else: the intro button will not show when the fade in animation is occuring
       else{
         introStart.setVisible(false);
       }
-      
-      
     }
-
   }
   
   //If window name is "start2"
   if (windowName == "start2") {
-     //Fade in/out the logo with tint
+    //Fade in/out the logo with tint
     
-  
     // If fadeIn2 is equal to true
     if (fadeIn2) {
       alpha2 += 2;  // Increase alpha for fade-in
-      if (alpha2 >= 255) {
-       
-        print();
-      }
     } 
     // Apply the tint with changing alpha
     tint(255, alpha2);  
 
     //Background for window
     background(start2Background);
-   
-    textAlign(CENTER);
-    
+       
     // Draw the betting software's logo
     image(logo, 700, 10);
-    
-   
+       
     textSize(30);
     
-
     // Handle visibility of UI elements
     username.setVisible(false);
     backButton.setVisible(false);
@@ -144,9 +118,7 @@ void displayScreen() {
     guide.setVisible(false);
     deposit.setVisible(false);
     withdraw.setVisible(false);
-
-
-    
+    reset.setVisible(false);
 
     //If the warning has been clicked by the user, the start button will show and user can proceed to software
     if (warningChecked) {

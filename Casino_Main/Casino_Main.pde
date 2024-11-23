@@ -46,14 +46,10 @@ void setup(){
     showWelcomeStatement = false;
   }
   
-  
   // Else, show Welcome Statement as the user already has his account on the software
   else{
     showWelcomeStatement = true;
   }
-  
-  
-  
   
   // Loads the balance in $ from the SavedData text file and put that to the userBalance variable
   String[] preload2 = loadStrings("SavedData.txt");
@@ -105,14 +101,12 @@ void setup(){
   //Creating new user
   slotUser = new User(userName,userBalance,0,betAmount,depositAmount,withdrawAmount);
   
-  
   //loading slot machine background
   slotsBackground = loadImage("Images/slotsBackground.jpg");
   slotsBackground.resize(width, height);
   
   //Creates GUI
-  createGUI();
-  
+  createGUI(); 
 }
 
 // Draw
