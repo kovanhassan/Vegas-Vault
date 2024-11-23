@@ -133,14 +133,10 @@ void displayScreen() {
   
   // If window name is slots
   if (windowName == "slots") {
-    
-    
-    
     textSize(30);
     
     //Background
     background(startBackground);
-    
     
     //Turn Off All the warnings for Depositing and Withdrawing 
     minWithdrawWarning = false;
@@ -198,11 +194,9 @@ void displayScreen() {
     }
   }
   
-  
   //if window name is rules
   if(windowName == "rules"){
     
-
     // Use our green casino themed background
     background(slotsBackground);
     
@@ -217,18 +211,14 @@ void displayScreen() {
     backButton.setVisible(false);
     backButton_guide.setVisible(true);
     guide.setVisible(false);
-
     
     // Display Set Of Rules
     image(rules,-150,-100);
-
   }
-  
   
   // If Window Name Is Deposit
   if(windowName == "deposit"){
     background(dep_witBackground);
-    
     
     deposit.setVisible(false);
     withdraw.setVisible(false);
@@ -248,31 +238,33 @@ void displayScreen() {
     decreaseDeposit.setVisible(true);
     backtoSlotsButton.setVisible(true);
     
-    
+    //Displaying the paypal image for the deposit screen
     image(paypalLogo,400,0);
     slotUser.displayDepositStats();
     
+    //Showing the user when they have reached the minimum deposit amount
     if(minDepositWarning){
        text("Minimum Deposit Reached!", width / 2, 480);
     }
     
+    //Showing the user when they have reached the maximum deposit amount
     else if(maxDepositWarning){
       text("Maximum Deposit Reached!", width / 2, 480);
-      
     }
     
-      if (elapsedTime <= 20000 && depositClicked ) {  // 120,000 ms = 2 minutes
+    //Prevents the user from rapidly increasing the amount in their account
+    if (elapsedTime <= 20000 && depositClicked ) {  // 120,000 ms = 2 minutes
       text("Deposit is paused. Waiting for cooldown...",550,440);
       depositClick.setVisible(false);
-    } else {
-      // Otherwise, hide the deposit button
-      
+    } 
+    
+    //Otherwise, make the deposit button visible
+    else {      
       depositClick.setVisible(true);
     }
-
   }
   
-  
+  //Setting up the withdraw page
   if(windowName == "withdraw"){
     background(dep_witBackground);
     
@@ -294,21 +286,18 @@ void displayScreen() {
     decreaseWithdrawAmount.setVisible(true);
     increaseWithdrawAmount.setVisible(true);
     
-    
+    //Displaying the paypal logo
     image(paypalLogo,400,0);
     slotUser.displayWithdrawStats();
     
+    //Showing the user when they've reached the minimum withdraw amount
     if(minWithdrawWarning){
        text("Minimum Withdraw Reached!", width / 2, 470);
     }
     
-    
+    //Showing the user when they've reached the maximum withdraw amount
     else if(maxWithdrawWarning){
-      text("Maximum Withdraw Reached!", width / 2, 470);
-      
-    }
-    
-  }
-  
-  
+      text("Maximum Withdraw Reached!", width / 2, 470);     
+    }   
+  }  
 }

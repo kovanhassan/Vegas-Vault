@@ -18,49 +18,43 @@ class User{
     this.amountWithdraw = wA;
   }
 
-int depositCash(){
-  return this.balance = this.balance + amountDeposit;
-}
-
-int withdrawCash(){
-  return this.balance = this.balance - amountWithdraw;
+  //When user adds money to their account through the deposit page
+  int depositCash(){
+    return this.balance = this.balance + amountDeposit;
+  }
   
-}
-  
-void displayStats(){
-  fill(255);
-  textAlign(CENTER);
-   text(userName, 950,50);
-   text("$"+this.balance,950,100);
-   text("Bet Amount"+":",950,230);
-   text("$"+this.betAmount,950,270);
-}
+  //When user remove money to their account through the withdraw page
+  int withdrawCash(){
+    return this.balance = this.balance - amountWithdraw; 
+  }
+ 
+  int deduct(){
+    return this.balance = this.balance - this.betAmount; 
+  }
 
-void displayDepositStats(){
-  textAlign(CENTER);
-  fill(255);
-   text(userName, 100,50);
-   text("$"+this.balance,100,100);
-   text("Deposit Amount:"+" $"+amountDeposit,width/2,height/2);
-  
-}
+  //Function to display the gambling stats such as: the amount in their account
+  void displayStats(){
+    fill(255);
+    textAlign(CENTER);
+    text(userName, 950,50);
+    text("$"+this.balance,950,100);
+    text("Bet Amount"+":",950,230);
+    text("$"+this.betAmount,950,270);
+  }
 
-void displayWithdrawStats(){
-   textAlign(CENTER);
-   fill(255);
-   text(userName, 100,50);
-   text("$"+this.balance,100,100);
-   text("Withdraw Amount:"+" $"+amountWithdraw,width/2,height/2);
-  
-}
+  void displayDepositStats(){
+    textAlign(CENTER);
+    fill(255);
+    text(userName, 100,50);
+    text("$"+this.balance,100,100);
+    text("Deposit Amount:"+" $"+amountDeposit,width/2,height/2);
+  }
 
-int deduct(){
-  return this.balance = this.balance - this.betAmount; 
-
-}
-
-
-
-
-  
+  void displayWithdrawStats(){
+     textAlign(CENTER);
+     fill(255);
+     text(userName, 100,50);
+     text("$"+this.balance,100,100);
+     text("Withdraw Amount:"+" $"+amountWithdraw,width/2,height/2);
+  }
 }
